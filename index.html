@@ -30,23 +30,26 @@
 
 <script>
     function getPlatform() {
-        const userAgent = navigator.userAgent;
-        let platform = "Unknown";
+    const userAgent = navigator.userAgent;
+    let platform = "Unknown";
 
-        if (userAgent.includes("Win")) {
-            platform = "Windows";
-        } else if (userAgent.includes("Mac")) {
-            platform = "macOS";
-        } else if (userAgent.includes("X11") || userAgent.includes("Linux")) {
-            platform = "Linux";
-        } else if (userAgent.includes("iPhone") || userAgent.includes("iPad")) {
-            platform = "iOS";
-        } else if (userAgent.includes("Android")) {
+    if (userAgent.includes("Win")) {
+        platform = "Windows";
+    } else if (userAgent.includes("Mac")) {
+        platform = "macOS";
+    } else if (userAgent.includes("Linux")) {
+        // Check if it's Android
+        if (userAgent.includes("Android")) {
             platform = "Android";
+        } else {
+            platform = "Linux";
         }
-
-        return platform;
+    } else if (userAgent.includes("iPhone") || userAgent.includes("iPad")) {
+        platform = "iOS";
     }
+
+    return platform;
+}
 
     document.addEventListener("DOMContentLoaded", function() {
         const platformName = getPlatform();
