@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Identifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .platform {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="platform" id="platform-info">
+    <p id="platform-name">Detecting...</p>
+</div>
+
+<script>
+    function getPlatform() {
+        const userAgent = navigator.userAgent;
+        let platform = "Unknown";
+
+        if (userAgent.includes("Win")) {
+            platform = "Windows";
+        } else if (userAgent.includes("Mac")) {
+            platform = "macOS";
+        } else if (userAgent.includes("X11") || userAgent.includes("Linux")) {
+            platform = "Linux";
+        } else if (userAgent.includes("iPhone") || userAgent.includes("iPad")) {
+            platform = "iOS";
+        } else if (userAgent.includes("Android")) {
+            platform = "Android";
+        }
+
+        return platform;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const platformName = getPlatform();
+        document.getElementById("platform-name").innerText = `You are on: ${platformName}`;
+    });
+</script>
+
+</body>
+</html>
